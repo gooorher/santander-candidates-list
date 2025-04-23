@@ -1,9 +1,24 @@
+.candidate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacio entre secciones del formulario */
+}
+
+.form-fields {
+  display: flex;
+  gap: 20px; /* Espacio entre campos de nombre y apellido */
+}
+
+.form-field {
+  flex-grow: 1; /* Permite que los campos se expandan */
+}
+
 .file-upload-area {
   border: 2px dashed #ccc;
   padding: 20px;
   text-align: center;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 0; /* Ajustado para el gap del formulario */
   transition: border-color 0.3s ease;
 
   &:hover {
@@ -18,4 +33,14 @@
   input[type="file"] {
     display: none; /* Ocultar el input de archivo nativo */
   }
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
 }

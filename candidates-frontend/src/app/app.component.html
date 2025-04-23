@@ -1,22 +1,27 @@
-<div class="container">
-  <h1>Candidate Submission and List</h1>
-  <app-candidate-form></app-candidate-form>
-  <app-candidate-list></app-candidate-list>
+<div class="app-container">
+  <div class="header-logo">
+    <img src="assets/images/santander.png" alt="Santander Logo" class="app-logo">
+  </div>
+  <div class="content-container">
+    <div class="container">
+      <h1>Candidate Submission and List</h1>
+      <app-candidate-form></app-candidate-form>
+      <app-candidate-list></app-candidate-list>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<router-outlet></router-outlet>
+
 
 <footer>
   <div class="footer-content">
-    <img src="assets/images/santander.png" alt="Santander Logo" class="footer-logo">
     <p>© Banco Santander S.A. Todos los derechos reservados. Sede corporativa: CCS Av. Cantabria, s/n 28660 Boadilla del Monte, Madrid (España)</p>
     <div class="social-icons">
-      <!-- Aquí irían los iconos de redes sociales -->
-      <!-- Por ahora, solo placeholders -->
-      <span>LinkedIn</span>
-      <span>Facebook</span>
-      <span>Twitter</span>
-      <span>YouTube</span>
-      <span>Instagram</span>
+      <a href="https://es.linkedin.com/company/banco-santander" target="_blank" aria-label="LinkedIn"><img src="assets/images/linkedin.svg" alt="LinkedIn"></a>
+      <a href="https://www.facebook.com/bancosantander" target="_blank" aria-label="Facebook"><img src="assets/images/facebook.svg" alt="Facebook"></a>
+      <a href="https://twitter.com/santander_es" target="_blank" aria-label="Twitter"><img src="assets/images/twitterx.svg" alt="Twitter"></a>
+      <a href="https://www.youtube.com/user/bancosantander" target="_blank" aria-label="YouTube"><img src="assets/images/youtube.svg" alt="YouTube"></a>
+      <a href="https://www.instagram.com/santander_es/" target="_blank" aria-label="Instagram"><img src="assets/images/instagram.svg" alt="Instagram"></a>
     </div>
   </div>
 </footer>

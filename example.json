@@ -1,7 +1,0 @@
-{
-    name: 'John',
-    surname: 'Doe',
-    seniority: 'junior',
-    years: 6,
-    availability: true
-}

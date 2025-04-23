@@ -26,4 +26,8 @@ export class CandidateDataService {
   getCandidates(): Observable<Candidate[]> {
     return this.candidates$;
   }
+
+  getCurrentCandidates(): Candidate[] {
+    return this.candidatesSubject.value;
+  }
 }

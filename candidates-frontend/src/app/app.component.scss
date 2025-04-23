@@ -1,9 +1,38 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que el footer esté al final */
+}
+
+.header-logo {
+  position: absolute; /* Posicionamiento absoluto para la esquina superior izquierda */
+  top: 20px; /* Ajusta la distancia desde la parte superior */
+  left: 20px; /* Ajusta la distancia desde la izquierda */
+  z-index: 10; /* Asegura que el logo esté por encima de otros elementos */
+}
+
+.app-logo {
+  height: 50px; /* Ajusta el tamaño del logo según sea necesario */
+}
+
+.content-container {
+  margin-top: 80px; /* Ajusta el margen superior para dejar espacio al logo */
+  flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* Añade padding horizontal */
+}
+
+
 footer {
   background-color: #e3000f; /* Rojo intenso de Santander */
   color: white;
   padding: 20px 0;
   text-align: center;
-  margin-top: 40px; /* Espacio entre el contenido principal y el footer */
+  margin-top: 20px; /* Espacio entre el contenido principal y el footer */
 }
 
 .footer-content {
@@ -14,12 +43,16 @@ footer {
   align-items: center;
 }
 
-.footer-logo {
-  height: 40px; /* Ajusta el tamaño del logo según sea necesario */
-  margin-bottom: 10px;
+.social-icons {
+  margin-top: 10px;
 }
 
-.social-icons span {
+.social-icons a {
   margin: 0 10px;
-  /* Aquí se aplicarían estilos para los iconos reales */
+  display: inline-block; /* Asegura que los enlaces se muestren en línea */
+}
+
+.social-icons img {
+  height: 24px; /* Ajusta el tamaño de los iconos de redes sociales */
+  vertical-align: middle; /* Alinea los iconos verticalmente */
 }
