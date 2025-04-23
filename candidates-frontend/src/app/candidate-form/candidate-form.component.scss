@@ -1,0 +1,21 @@
+.file-upload-area {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: #aaa;
+  }
+
+  &.drag-over {
+    border-color: #777;
+    background-color: #f0f0f0;
+  }
+
+  input[type="file"] {
+    display: none; /* Ocultar el input de archivo nativo */
+  }
+}

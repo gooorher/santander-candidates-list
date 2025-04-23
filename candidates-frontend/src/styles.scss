@@ -2,3 +2,19 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Variables de color */
+$light-red-primary: #fde0e0; // Un tono rojo muy claro
+$light-red-secondary: #f9b4b4; // Un tono rojo claro un poco más oscuro
+
+/* Estilos generales de layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+mat-card {
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

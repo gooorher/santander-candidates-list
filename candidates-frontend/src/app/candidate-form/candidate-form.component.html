@@ -18,10 +18,14 @@
         </mat-error>
       </mat-form-field>
 
-      <div>
+      <div class="file-upload-area"
+           (dragover)="onDragOver($event)"
+           (dragleave)="onDragLeave($event)"
+           (drop)="onDrop($event)">
         <label for="candidateFile">Candidate File (Excel):</label>
         <input type="file" id="candidateFile" (change)="onFileSelected($event)" accept=".xlsx, .xls" required>
-        <div *ngIf="candidateForm.get('candidateFile')?.hasError('required') && candidateForm.get('candidateFile')?.touched">
+        <p>Drag and drop your file here or click to select</p>
+        <div *ngIf="candidateForm.get('candidateFile')?.hasError('required') && (candidateForm.get('candidateFile')?.touched || candidateForm.dirty)">
           File is required
         </div>
       </div>

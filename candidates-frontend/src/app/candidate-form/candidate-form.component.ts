@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CandidateService } from '../candidate.service';
 import { CandidateDataService, Candidate } from '../candidate-data.service';
@@ -25,6 +25,8 @@ import { CommonModule } from '@angular/common'; // Import CommonModule
 export class CandidateFormComponent {
   candidateForm: FormGroup;
   selectedFile: File | null = null;
+  @ViewChild('fileInput') fileInput!: ElementRef;
+
 
   constructor(
     private fb: FormBuilder,
@@ -41,10 +43,7 @@ export class CandidateFormComponent {
   onFileSelected(event: Event): void {
     const element = event.target as HTMLInputElement;
     if (element.files && element.files.length > 0) {
-      this.selectedFile = element.files[0];
-      this.candidateForm.patchValue({ candidateFile: this.selectedFile });
-      // Optional: Update validity if needed, though Validators.required on the form control should handle it
-      this.candidateForm.get('candidateFile')?.updateValueAndValidity();
+      this.handleFile(element.files[0]);
     } else {
       this.selectedFile = null;
       this.candidateForm.patchValue({ candidateFile: null });
@@ -52,7 +51,49 @@ export class CandidateFormComponent {
     }
   }
 
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    // Add a CSS class to indicate drag over
+    const targetElement = event.target as HTMLElement;
+    targetElement.classList.add('drag-over');
+  }
+
+  onDragLeave(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    // Remove the CSS class
+    const targetElement = event.target as HTMLElement;
+    targetElement.classList.remove('drag-over');
+  }
+
+  onDrop(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    // Remove the CSS class
+    const targetElement = event.target as HTMLElement;
+    targetElement.classList.remove('drag-over');
+
+    const files = event.dataTransfer?.files;
+    if (files && files.length > 0) {
+      this.handleFile(files[0]);
+    }
+  }
+
+  handleFile(file: File): void {
+    this.selectedFile = file;
+    this.candidateForm.patchValue({ candidateFile: this.selectedFile });
+    this.candidateForm.get('candidateFile')?.updateValueAndValidity();
+
+    // Optional: Display file name to the user
+    console.log('File selected:', file.name);
+  }
+
+
   onSubmit(): void {
+    // Mark all fields as touched to display validation messages
+    this.candidateForm.markAllAsTouched();
+
     if (this.candidateForm.valid && this.selectedFile) {
       const { name, surname } = this.candidateForm.value;
       this.candidateService.uploadCandidate(name, surname, this.selectedFile).subscribe({
@@ -60,10 +101,9 @@ export class CandidateFormComponent {
           this.candidateDataService.addCandidate(newCandidate);
           this.candidateForm.reset();
           this.selectedFile = null;
-          // Reset file input manually if needed, depending on the template implementation
-          const fileInput = document.getElementById('candidateFile') as HTMLInputElement;
-          if (fileInput) {
-            fileInput.value = '';
+          // Reset file input manually if needed
+          if (this.fileInput) {
+            this.fileInput.nativeElement.value = '';
           }
         },
         error: (error) => {
@@ -71,6 +111,9 @@ export class CandidateFormComponent {
           // Handle error, e.g., show an error message to the user
         }
       });
+    } else {
+      console.log('Form is invalid or file not selected');
+      // Optionally, display a general error message to the user
     }
   }
 }
